@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GerenciamentoDeTarefas
 {
-    internal class Tarefa
+    public class Tarefa
     {
         // Classe para representar uma tarefa
         public int Id { get; set; }
