@@ -1,5 +1,7 @@
 ﻿
 
+using GerenciamentoDeTarefas.Senha;
+
 namespace GerenciamentoDeTarefas.Entidades
 {
     // Classe para os Desenvolvedores
@@ -12,6 +14,38 @@ namespace GerenciamentoDeTarefas.Entidades
         {
             Tarefas = new List<Tarefa>();
         }
+
+        public static void AcessarComoDesenvolvedor()
+        {
+            Console.WriteLine("Acessando como Desenvolvedor...");
+            Autenticacao autenticacao = new Autenticacao();
+
+            Console.WriteLine("Por favor, faça login.");
+
+            bool loggedIn = false;
+
+            do
+            {
+                Console.Write("Usuário: ");
+                string inputUsuario = Console.ReadLine();
+
+                Console.Write("Senha: ");
+                string inputSenha = LerSenha();
+
+                loggedIn = autenticacao.FazerLogin(inputUsuario, inputSenha);
+
+                if (!loggedIn)
+                {
+                    Console.WriteLine("Credenciais inválidas. Tente novamente.");
+                }
+
+            } while (!loggedIn);
+
+            Console.WriteLine("Login bem-sucedido! Bem-vindo, Desenvolvedor!");
+
+            Desenvolvedor.ExibirMenuDesenvolvedor();
+        }
+
 
         public static void ExibirMenuDesenvolvedor()
         {
