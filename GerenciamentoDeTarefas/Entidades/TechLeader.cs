@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace GerenciamentoDeTarefas.Entidades
 {
@@ -16,6 +12,68 @@ namespace GerenciamentoDeTarefas.Entidades
         {
             Tarefas = new List<Tarefa>();
         }
+
+
+        public static void ExibirMenuTechLeader()
+        {
+            bool sair = false;
+
+            do
+            {
+                Console.WriteLine("\nMenu do Tech Leader:");
+                Console.WriteLine("1. Criar Tarefa");
+                Console.WriteLine("2. Assumir Tarefa");
+                Console.WriteLine("3. Atribuir Responsável");
+                Console.WriteLine("0. Voltar");
+
+                int opcao;
+                if (!int.TryParse(Console.ReadLine(), out opcao))
+                {
+                    Console.WriteLine("Opção inválida. Por favor, selecione uma opção válida.");
+                    continue;
+                }
+
+                switch (opcao)
+                {
+                    case 1:
+                        CriarTarefa();
+                        break;
+                    case 2:
+                        AssumirTarefa();
+                        break;
+                    case 3:
+                        AtribuirResponsavel();
+                        break;
+                    case 0:
+                        sair = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Por favor, selecione uma opção válida.");
+                        break;
+                }
+
+            } while (!sair);
+        }
+
+        // Métodos de operações do Tech Leader
+        static void CriarTarefa()
+        {
+            Console.WriteLine("Opção selecionada: Criar Tarefa");
+            // Adicionar lógica para criar uma nova tarefa
+        }
+
+        static void AssumirTarefa()
+        {
+            Console.WriteLine("Opção selecionada: Assumir Tarefa");
+            // Adicionar lógica para assumir uma tarefa
+        }
+
+        static void AtribuirResponsavel()
+        {
+            Console.WriteLine("Opção selecionada: Atribuir Responsável");
+            // Adicionar lógica para atribuir responsável a uma tarefa
+        }
+
 
         public void CriarTarefa(string descricao, StatusTarefa status, string responsavel)
         {
@@ -71,5 +129,5 @@ namespace GerenciamentoDeTarefas.Entidades
 
         // Outros métodos para manipular tarefas
     }
-    }
 }
+
