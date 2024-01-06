@@ -15,7 +15,7 @@ namespace GerenciamentoDeTarefas.Entidades
             Tarefas = new List<Tarefa>();
         }
 
-        public static void AcessarComoTechLeader()
+        public static void AcessarComoTechLeader(TechLeader techLeader)
         {
             Console.WriteLine("Acessando como Tech Leader...");
             Autenticacao autenticacao = new Autenticacao();
@@ -43,10 +43,10 @@ namespace GerenciamentoDeTarefas.Entidades
 
             Console.WriteLine("Login bem-sucedido! Bem-vindo, Tech Leader!");
 
-            TechLeader.ExibirMenuTechLeader();
+            TechLeader.ExibirMenuTechLeader(techLeader);
         }
 
-        public static void ExibirMenuTechLeader()
+        public static void ExibirMenuTechLeader(TechLeader techLeader)
         {
             bool sair = false;
 
@@ -68,7 +68,7 @@ namespace GerenciamentoDeTarefas.Entidades
                 switch (opcao)
                 {
                     case 1:
-                        CriarTarefa();
+                        CriarTarefaTechLeader(techLeader);
                         break;
                     case 2:
                         AssumirTarefa();
@@ -88,12 +88,24 @@ namespace GerenciamentoDeTarefas.Entidades
         }
 
         // Métodos de operações do Tech Leader
-        static void CriarTarefa()
+
+        static void CriarTarefaTechLeader(TechLeader techLeader)
         {
             Console.WriteLine("Opção selecionada: Criar Tarefa");
-            // Adicionar lógica para criar uma nova tarefa
-        }
+            Console.WriteLine("Digite a descrição da nova tarefa:");
+            string descricao = Console.ReadLine();
 
+            // Supondo que o status seja fornecido de alguma maneira, como uma escolha do usuário
+            StatusTarefa status = StatusTarefa.EmAnalise; // Por exemplo, definindo como Pendente por padrão
+
+            techLeader.CriarTarefa(descricao, status);
+        }
+        public void CriarTarefa(string descricao, StatusTarefa status)
+        {
+            // Lógica para criar uma nova tarefa automaticamente atribuída ao desenvolvedor
+            Tarefa novaTarefa = new Tarefa(Tarefas.Count + 1, descricao, status, Nome);
+            Tarefas.Add(novaTarefa);
+        }
         static void AssumirTarefa()
         {
             Console.WriteLine("Opção selecionada: Assumir Tarefa");

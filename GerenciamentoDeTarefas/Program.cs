@@ -10,6 +10,7 @@ namespace GerenciamentoDeTarefas
             string nome = null;
             string chaveAcesso = null;
             Desenvolvedor desenvolvedor = new Desenvolvedor(nome,chaveAcesso);
+            TechLeader techLeader = new TechLeader(nome, chaveAcesso); 
 
             Console.WriteLine("Bem-vindo ao Gerenciamento de Tarefas!");
             //switch case que seleciona o cargo
@@ -31,7 +32,7 @@ namespace GerenciamentoDeTarefas
                 switch (opcao)
                 {
                     case 1:
-                        TechLeader.AcessarComoTechLeader();
+                        TechLeader.AcessarComoTechLeader(techLeader);
                         break;
                     case 2:
                         Desenvolvedor.AcessarComoDesenvolvedor(desenvolvedor);

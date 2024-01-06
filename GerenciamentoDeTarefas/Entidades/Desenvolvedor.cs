@@ -7,6 +7,7 @@ namespace GerenciamentoDeTarefas.Entidades
     // Classe para os Desenvolvedores
     public class Desenvolvedor : Usuario
     {
+
         public List<Tarefa> Tarefas { get; set; }
 
         public Desenvolvedor(string nome, string chaveAcesso)
