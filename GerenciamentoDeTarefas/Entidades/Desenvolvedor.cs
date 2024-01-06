@@ -1,6 +1,7 @@
 ﻿
-
+using System.IO;
 using GerenciamentoDeTarefas.Senha;
+using Newtonsoft.Json;
 
 namespace GerenciamentoDeTarefas.Entidades
 {
@@ -91,26 +92,52 @@ namespace GerenciamentoDeTarefas.Entidades
             Console.WriteLine("Opção selecionada: Criar Tarefa");
             Console.WriteLine("Digite a descrição da nova tarefa:");
             string descricao = Console.ReadLine();
+            Console.WriteLine("Digite o responsavel da nova tarefa:");
+            string responsavel = Console.ReadLine();
 
             // Supondo que o status seja fornecido de alguma maneira, como uma escolha do usuário
             StatusTarefa status = StatusTarefa.EmAnalise; // Por exemplo, definindo como Pendente por padrão
 
-            desenvolvedor.CriarTarefa(descricao, status);
+            desenvolvedor.CriarTarefa(descricao, status, responsavel);
         }
 
-        public void CriarTarefa(string descricao, StatusTarefa status)
+        public void CriarTarefa(string descricao, StatusTarefa status, string responsavel)
         {
             // Lógica para criar uma nova tarefa automaticamente atribuída ao desenvolvedor
-            Tarefa novaTarefa = new Tarefa(Tarefas.Count + 1, descricao, status, Nome);
+            Tarefa novaTarefa = new Tarefa(Tarefas.Count + 1, descricao, status, responsavel);
             Tarefas.Add(novaTarefa);
         }
 
         static void VisualizarMinhasTarefas(Desenvolvedor desenvolvedor)
         {
-            Console.WriteLine($"Tarefas de {desenvolvedor.Nome}:");
+            Console.WriteLine($"Tarefas:");
             foreach (var tarefa in desenvolvedor.Tarefas)
             {
                 Console.WriteLine($"ID: {tarefa.Id} - Descrição: {tarefa.Descricao} - Status: {tarefa.Status}");
+            }
+        }
+        public void MostrarInformacoes()
+        {
+            Console.WriteLine($"Nome: {Nome}, Chave de Acesso: {ChaveAcesso}");
+        }
+
+        public static void LerDevs()
+        {
+            // Caminho do arquivo JSON
+            string caminhoArquivo = "E:\\Users\\kaiqu\\Desktop\\Projeto Individual\\GerenciamentoDeTarefas\\GerenciamentoDeTarefas\\Entidades\\desenvolvedores.json";
+
+            // Lê o conteúdo do arquivo JSON
+            string json = File.ReadAllText(caminhoArquivo);
+
+            // Converte o JSON para uma lista de objetos Desenvolvedor
+            List<Desenvolvedor> desenvolvedores = JsonConvert.DeserializeObject<List<Desenvolvedor>>(json);
+
+            // Mostra as informações dos desenvolvedores (apenas para demonstração)
+            Console.WriteLine("Desenvolvedores adicionados:");
+
+            foreach (var dev in desenvolvedores)
+            {
+                dev.MostrarInformacoes();
             }
         }
 

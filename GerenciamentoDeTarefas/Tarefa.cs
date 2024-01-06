@@ -9,7 +9,7 @@ namespace GerenciamentoDeTarefas
         public StatusTarefa Status { get; set; }
         public DateTime DataCriacao { get; set; }
         public DateTime? DataConclusao { get; set; }
-        public string Responsavel { get; set; }
+        public string? Responsavel { get; set; }
         // Outros campos necessários para as tarefas
 
         public Tarefa(int id, string descricao, StatusTarefa status, string responsavel)

@@ -164,14 +164,31 @@ namespace GerenciamentoDeTarefas.Entidades
             // Outras estatísticas desejadas
         }
 
-        public void AdicionarDesenvolvedor(Desenvolvedor desenvolvedor)
+        public void MostrarInformacoes()
         {
-            // Lógica para adicionar um desenvolvedor à lista de desenvolvedores
-            // Esta lógica pode envolver o armazenamento dos desenvolvedores em uma lista
-            // no Tech Leader ou em algum local centralizado.
+            Console.WriteLine($"Nome: {Nome}, Chave de Acesso: {ChaveAcesso}");
         }
 
-        // Outros métodos para manipular tarefas
+        public static void LerDevs()
+        {
+            // Caminho do arquivo JSON
+            string caminhoArquivo = "E:\\Users\\kaiqu\\Desktop\\Projeto Individual\\GerenciamentoDeTarefas\\GerenciamentoDeTarefas\\Entidades\\desenvolvedores.json";
+
+            // Lê o conteúdo do arquivo JSON
+            string json = File.ReadAllText(caminhoArquivo);
+
+            // Converte o JSON para uma lista de objetos Desenvolvedor
+            List<Desenvolvedor> desenvolvedores = JsonConvert.DeserializeObject<List<Desenvolvedor>>(json);
+
+            // Mostra as informações dos desenvolvedores (apenas para demonstração)
+            Console.WriteLine("Desenvolvedores adicionados:");
+
+            foreach (var dev in desenvolvedores)
+            {
+                dev.MostrarInformacoes();
+            }
+
+       
     }
 }
 

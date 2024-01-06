@@ -7,10 +7,13 @@ namespace GerenciamentoDeTarefas.Entidades
         public string Nome { get;  set; }
         public string ChaveAcesso { get;  set; }
 
+        public string Responsavel { get; set; }
+
         public Usuario(string nome, string chaveAcesso)
         {
             Nome = nome;
             ChaveAcesso = chaveAcesso;
+
         }
 
         public static string LerSenha()
