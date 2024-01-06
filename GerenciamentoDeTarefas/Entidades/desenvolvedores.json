@@ -1,0 +1,20 @@
+﻿{
+  "Desenvolvedores": [
+    {
+      "Usuario": "dev1",
+      "Senha": "senha1"
+    },
+    {
+      "Usuario": "dev2",
+      "Senha": "senha2"
+    },
+    {
+      "Usuario": "dev3",
+      "Senha": "senha3"
+    },
+    {
+      "Usuario": "dev4",
+      "Senha": "senha4"
+    }
+  ]
+}

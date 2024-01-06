@@ -7,6 +7,10 @@ namespace GerenciamentoDeTarefas
     {
         static void Main(string[] args)
         {
+            string nome = null;
+            string chaveAcesso = null;
+            Desenvolvedor desenvolvedor = new Desenvolvedor(nome,chaveAcesso);
+
             Console.WriteLine("Bem-vindo ao Gerenciamento de Tarefas!");
             //switch case que seleciona o cargo
             bool sair = false;
@@ -30,7 +34,7 @@ namespace GerenciamentoDeTarefas
                         TechLeader.AcessarComoTechLeader();
                         break;
                     case 2:
-                        Desenvolvedor.AcessarComoDesenvolvedor();
+                        Desenvolvedor.AcessarComoDesenvolvedor(desenvolvedor);
                         break;
                     case 0:
                         sair = true;

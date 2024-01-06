@@ -15,7 +15,7 @@ namespace GerenciamentoDeTarefas.Entidades
             Tarefas = new List<Tarefa>();
         }
 
-        public static void AcessarComoDesenvolvedor()
+        public static void AcessarComoDesenvolvedor(Desenvolvedor desenvolvedor)
         {
             Console.WriteLine("Acessando como Desenvolvedor...");
             Autenticacao autenticacao = new Autenticacao();
@@ -43,11 +43,11 @@ namespace GerenciamentoDeTarefas.Entidades
 
             Console.WriteLine("Login bem-sucedido! Bem-vindo, Desenvolvedor!");
 
-            Desenvolvedor.ExibirMenuDesenvolvedor();
+            Desenvolvedor.ExibirMenuDesenvolvedor(desenvolvedor);
         }
 
 
-        public static void ExibirMenuDesenvolvedor()
+        public static void ExibirMenuDesenvolvedor(Desenvolvedor desenvolvedor)
         {
             bool sair = false;
 
@@ -68,10 +68,10 @@ namespace GerenciamentoDeTarefas.Entidades
                 switch (opcao)
                 {
                     case 1:
-                        CriarTarefaDesenvolvedor();
+                        CriarTarefaDesenvolvedor(desenvolvedor);
                         break;
                     case 2:
-                        VisualizarMinhasTarefas();
+                        VisualizarMinhasTarefas(desenvolvedor);
                         break;
                     case 0:
                         sair = true;
@@ -85,11 +85,16 @@ namespace GerenciamentoDeTarefas.Entidades
         }
 
         
-        static void CriarTarefaDesenvolvedor()
+        static void CriarTarefaDesenvolvedor(Desenvolvedor desenvolvedor)
         {
             Console.WriteLine("Opção selecionada: Criar Tarefa");
-            // Adicionar lógica para um desenvolvedor criar uma nova tarefa
+            Console.WriteLine("Digite a descrição da nova tarefa:");
+            string descricao = Console.ReadLine();
 
+            // Supondo que o status seja fornecido de alguma maneira, como uma escolha do usuário
+            StatusTarefa status = StatusTarefa.EmAnalise; // Por exemplo, definindo como Pendente por padrão
+
+            desenvolvedor.CriarTarefa(descricao, status);
         }
 
         public void CriarTarefa(string descricao, StatusTarefa status)
@@ -99,10 +104,13 @@ namespace GerenciamentoDeTarefas.Entidades
             Tarefas.Add(novaTarefa);
         }
 
-        static void VisualizarMinhasTarefas()
+        static void VisualizarMinhasTarefas(Desenvolvedor desenvolvedor)
         {
-            Console.WriteLine("Opção selecionada: Visualizar Minhas Tarefas");
-            // Adicionar lógica para um desenvolvedor visualizar suas tarefas
+            Console.WriteLine($"Tarefas de {desenvolvedor.Nome}:");
+            foreach (var tarefa in desenvolvedor.Tarefas)
+            {
+                Console.WriteLine($"ID: {tarefa.Id} - Descrição: {tarefa.Descricao} - Status: {tarefa.Status}");
+            }
         }
 
 
